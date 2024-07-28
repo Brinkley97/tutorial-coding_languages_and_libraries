@@ -18,10 +18,13 @@ class SentimentAnalysis(PipelineTaskFactory):
     def text_to_pipeline(self):
         return super().text_to_pipeline()
 
-# class ChoosePipelineTask():
-#     def task(pipeline_task, input_text):
-#         pass 
-
-#     pipelines = {
-#         "sentiment-analysis" : SentimentAnalysis(pipeline_task, input_text)
-#     }
+class PipelineFactory:
+    pipeline_mappings = {
+        "sentiment-analysis" : SentimentAnalysis
+        }
+           
+    def create_pipeline(self, select_pipeline: str, **kwargs):
+        if select_pipeline in self.pipeline_mappings:
+            return self.pipeline_mappings[select_pipeline](**kwargs)
+        else:
+            raise ValueError(f"Unknown model type: {select_pipeline}. Pass in one of the following model types: {list(self.pipeline_mappings.keys())}")
