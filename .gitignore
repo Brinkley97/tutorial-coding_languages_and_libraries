@@ -2,3 +2,4 @@
 pandas/datasets/
 *.csv
 py_torch/coursera/__pycache__/special_plots.cpython-311.pyc
+*.zip
