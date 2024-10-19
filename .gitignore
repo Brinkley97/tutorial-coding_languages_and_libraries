@@ -5,3 +5,5 @@ py_torch/coursera/__pycache__/special_plots.cpython-311.pyc
 *.zip
 *.pth
 *.pt
+django/django_essential_training/db.sqlite3
+*.pyc
