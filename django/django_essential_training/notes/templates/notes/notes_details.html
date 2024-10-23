@@ -1,5 +1,12 @@
+<!-- notes/templates/notes/notes_detail.html -->
+<!DOCTYPE html>
 <html>
-	<h1> {{note.title}} </h1>
-    
-    <p> {{note.text}} </p>
+<head>
+    <title>Note Detail</title>
+</head>
+<body>
+    <h1>{{ note.title }}</h1>
+    <p>{{ note.content }}</p>
+    <a href="{% url 'notes_list' %}">Back to Notes List</a>
+</body>
 </html>

@@ -2,7 +2,9 @@ from .models import Notes
 
 from django.http import Http404
 from django.shortcuts import render
+from django.views.generic import DetailView, ListView
 
+"""Learning purposes: Function-based views
 # Create your views here.
 def list(request):
 	all_notes = Notes.objects.all()
@@ -17,3 +19,17 @@ def detail(request, pk):
     except Notes.DoesNotExist:
         raise Http404("Note doesn't exist.")
     return render(request, 'notes/notes_details.html', {'note': note_details})
+
+"""
+
+# Class-based views: https://www.linkedin.com/learning-login/share?account=76870426&forceAccount=false&redirect=https%3A%2F%2Fwww.linkedin.com%2Flearning%2Fdjango-essential-training%2Fintroduction-to-django-class-based-views%3Ftrk%3Dshare_video_url%26shareId%3DxGUVf8a8QqeMF5b4gNVrvw%253D%253D
+
+class NotesListView(ListView):
+    model = Notes
+    context_object_name = "notes"
+    template_name = "notes/notes_list.html"
+
+class NotesDetailView(DetailView):
+    model = Notes
+    context_object_name = "note"
+    template_name = "notes/notes_detail.html"
