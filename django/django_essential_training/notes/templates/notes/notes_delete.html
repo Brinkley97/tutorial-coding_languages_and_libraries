@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+<!-- http://127.0.0.1:8000/smart/notes/1/delete -->
+
+
+{% block content %}
+<!-- csrf (Cross-Site Request Forgery) -->
+<form method='POST'>{% csrf_token %}
+    <p>You sure you wanna delete "{{ notes.title }}"?</p>
+    <p>This action can't be undone</p>
+
+    <input type="submit" class="btn btn-danger" value="Confirm">
+</form>
+{% endblock %}

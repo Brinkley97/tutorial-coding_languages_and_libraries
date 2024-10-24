@@ -5,7 +5,7 @@
 
 {% block content %}
 <!-- csrf (Cross-Site Request Forgery) -->
-<form action="{% url 'notes.new' %}" method='POST'>{% csrf_token %}
+<form method='POST'>{% csrf_token %}
 	<h1 class="my-5">Create a new note:</h1>
     {{ form }}
     <button type="submit" class="btn btn-primary my-5">Submit</button>
@@ -16,5 +16,7 @@
     {{ form.errors.title.as_text }}
 </div>
 {% endif %}
+
+<a href="{% url 'notes.list' %}">Cancel</a>
 
 {% endblock %}

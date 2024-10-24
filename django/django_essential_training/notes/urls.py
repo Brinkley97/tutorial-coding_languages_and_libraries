@@ -14,9 +14,15 @@ urlpatterns = [
     # For notes.list, see home/templates/home/welcome.html
 	path('notes', views.NotesListView.as_view(), name='notes.list'), # See all notes
 
-    # For notes.detail, see notes/templates/notes/notes_details.html
+    # For notes.detail, see notes/templates/notes/1
     path('notes/<int:pk>', views.NotesDetailView.as_view(), name='notes.detail'), # See specific note
 
     # For notes.new, see notes/templates/notes/notes_form.html
     path('notes/new', views.NotesCreateView.as_view(), name='notes.new'),
+
+    # For notes.detail, see notes/templates/notes/1/edit
+    path('notes/<int:pk>/edit', views.NotesUpdateView.as_view(), name='notes.update'),
+
+    # For notes.detail, see notes/templates/notes/1/edit
+    path('notes/<int:pk>/delete', views.NotesDeleteView.as_view(), name='notes.delete'),
 ]
