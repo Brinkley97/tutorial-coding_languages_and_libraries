@@ -1,4 +1,5 @@
 from .models import Notes
+from .forms import NotesForm # For more authentication
 
 from django.http import Http404
 from django.shortcuts import render
@@ -26,8 +27,8 @@ from django.views.generic import CreateView, DetailView, ListView
 
 class NotesCreateView(CreateView):
     model = Notes
-    fields = ['title', 'text'] # What fields to allow user to enter
     success_url = '/smart/notes' # Redirect user to all notes to show success
+    form_class = NotesForm
 
 class NotesListView(ListView):
     model = Notes
