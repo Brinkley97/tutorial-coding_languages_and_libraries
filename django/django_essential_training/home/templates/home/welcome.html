@@ -1,7 +1,22 @@
-<html>
+{% extends "base.html" %}
+
+<!-- http://127.0.0.1:8000/home -->
+
+<!-- Use if have a base template -->
+
+{% block content %}
     <header><title>SmartNotes!</title></header>
 
     <body><h1>Welcome to Smartnotes!</h1></body>
 
     <p>Today is {{today}}</p>
-</html>
+{% endblock %}
+
+<!-- Use below if no base template -->
+<!-- <html>
+    <header><title>SmartNotes!</title></header>
+
+    <body><h1>Welcome to Smartnotes!</h1></body>
+
+    <p>Today is {{today}}</p>
+</html> -->

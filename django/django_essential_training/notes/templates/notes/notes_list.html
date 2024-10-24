@@ -1,6 +1,11 @@
-<html>
+{% extends "base.html" %}
+
+<!-- http://127.0.0.1:8000/smart/notes -->
+
+
+{% block content %}
 	<h1>Notes</h1>
 	{% for note in notes %}
-		<li> {{note.title}} </li>
+		<li class="note-li"> {{ note.title }} </li>
 	{% endfor %}
-</html>
+{% endblock %}
