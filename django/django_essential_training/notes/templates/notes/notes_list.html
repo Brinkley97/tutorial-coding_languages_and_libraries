@@ -5,6 +5,9 @@
 
 {% block content %}
 	<h1 class="my-5">These are the notes:</h1>
+		<a href="{% url 'home.page' %}" class="text-dark text-decoration-non">
+			<p>Home</p>
+		</a>
 		<a href="{% url 'notes.new' %}" class="text-dark text-decoration-non">
 			<p>Create new note</p>
 		</a>
