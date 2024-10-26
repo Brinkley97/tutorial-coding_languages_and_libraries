@@ -4,6 +4,8 @@ from .forms import NotesForm # For more authentication
 from django.http import Http404
 from django.shortcuts import render
 from django.views.generic.edit import DeleteView
+from django.http.response import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 
@@ -34,12 +36,32 @@ class NotesCreateView(CreateView):
     model = Notes
     success_url = '/smart/notes' # Redirect user to all notes to show successful creation
     form_class = NotesForm
+    
+    def form_valid(self, form):
+        """New note auto belongs to user that is logged in
+        
+        Instead of title -> save() -> Database where we can't save bc no user is specified
+        inject logged in user into object before saving to database with code below
+        
+        """
+        self.object = form.save(commit=False) # Create object without saving to database
+        self.object.user = self.request.user # Add user to object
+        self.object.save() # Save to database
+        return HttpResponseRedirect(self.get_success_url())
 
 # R: Retrieve
-class NotesListView(ListView):
+class NotesListView(LoginRequiredMixin, ListView):
     model = Notes
     context_object_name = "notes"
     template_name = "notes/notes_list.html"
+    login_url = "/admin" # Redirect to admin
+
+    def get_queryset(self):
+        """Get user related to specific note
+
+        Override base get_queryset() from https://ccbv.co.uk/projects/Django/5.0/django.views.generic.list/ListView/
+        """
+        return self.request.user.notes.all()
 
 # R: Retrieve
 class NotesDetailView(DetailView):

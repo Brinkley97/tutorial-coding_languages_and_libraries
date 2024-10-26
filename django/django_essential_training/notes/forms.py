@@ -17,8 +17,8 @@ class NotesForm(forms.ModelForm):
         }
 
     # To specify notes that can and can NOT be added
-    def clean_title(self):
-        title = self.cleaned_data['title']
-        if 'Django' not in title:
-            raise ValidationError('Add "Django" to title')
-        return title
+    # def clean_title(self):
+    #     title = self.cleaned_data['title']
+    #     if 'Django' not in title:
+    #         raise ValidationError('Add "Django" to title')
+    #     return title
