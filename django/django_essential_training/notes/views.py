@@ -32,7 +32,7 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView
 # CRUD
 
 # C: Create
-class NotesCreateView(CreateView):
+class NotesCreateView(LoginRequiredMixin, CreateView):
     model = Notes
     success_url = '/smart/notes' # Redirect user to all notes to show successful creation
     form_class = NotesForm
@@ -54,29 +54,29 @@ class NotesListView(LoginRequiredMixin, ListView):
     model = Notes
     context_object_name = "notes"
     template_name = "notes/notes_list.html"
-    login_url = "/admin" # Redirect to admin
+    login_url = "/login" # Redirect to admin
 
     def get_queryset(self):
-        """Get user related to specific note
+        """Get all notes related to a specific user
 
         Override base get_queryset() from https://ccbv.co.uk/projects/Django/5.0/django.views.generic.list/ListView/
         """
         return self.request.user.notes.all()
 
 # R: Retrieve
-class NotesDetailView(DetailView):
+class NotesDetailView(LoginRequiredMixin, DetailView):
     model = Notes
     context_object_name = "note"
     template_name = "notes/notes_details.html" # So we aren't required to use Django's default file name, add own file name
 
 # U: Update
-class NotesUpdateView(UpdateView):
+class NotesUpdateView(LoginRequiredMixin, UpdateView):
     model = Notes
     success_url = '/smart/notes' # Redirect user to all notes to show successful update
     form_class = NotesForm
 
 # D: Delete
-class NotesDeleteView(DeleteView):
+class NotesDeleteView(LoginRequiredMixin, DeleteView):
     model = Notes
     success_url = '/smart/notes'
     template_name = "notes/notes_delete.html"

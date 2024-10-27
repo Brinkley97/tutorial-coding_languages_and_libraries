@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+<!-- http://127.0.0.1:8000/login -->
+
+{% block content %}
+<h1>Create your account</h1>
+<form method="POST" style="text-align: left; margin: 0 auto; width: 600px;">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-secondary" name="Submit">
+</form>
+
+{% endblock %}
